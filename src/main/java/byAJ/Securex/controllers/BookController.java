@@ -3,6 +3,7 @@ package byAJ.Securex.controllers;
 import byAJ.Securex.models.Book;
 import byAJ.Securex.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,10 +17,10 @@ public class BookController {
 
 
     @RequestMapping("/books")
-    public String books(Model model){
+    public String books(Model model, Authentication auth){
+        System.out.println(auth.getAuthorities().toString());
         return "index";
     }
-
 
     @RequestMapping("/list")
     public String listBooks(Model model){

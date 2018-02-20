@@ -19,11 +19,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/","/h2-console/**","/add","/login","/templates","/static","/edit/**","/delete/**","/books/**","/list").permitAll()
+                .antMatchers("/","/h2-console/**","/login","/templates","/static","/edit/**","/delete/**","/books/**","/list").permitAll()
+                .antMatchers("/add","/books").access("hasAuthority('USER')")
                 .anyRequest()
                 .authenticated();
         http
-                .formLogin().failureUrl("/login")
+                .formLogin().loginPage("/login").permitAll()
                 .defaultSuccessUrl("/")
                 .loginPage("/login")
                 .permitAll()
@@ -34,6 +35,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("user").password("password").roles("USER");
+        auth.inMemoryAuthentication().withUser("user").password("password").authorities("USER");
+
+        //        Database Authentication must come after in memory authentication
+        auth
+                .userDetailsService(userDetailsServiceBean());
     }
 }
