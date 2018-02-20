@@ -14,6 +14,15 @@ public class Book {
     private String author;
     private String image;
 
+    public Book(String title, String author, String image) {
+        this.title = title;
+        this.author = author;
+        this.image = image;
+    }
+
+    public Book() {
+    }
+
     public int getId() {
         return id;
     }

@@ -25,12 +25,12 @@
             <th>Author</th>
             <th>Actions</th>
         </tr>
-        <tr th:each="row : ${books}">
+        <tr th:each="book : ${books}">
             <td></td>
-            <td th:text="${row.title}"></td>
-            <td th:text="${row.author}"></td>
-            <td><a href="#" th:href="@{/books/edit/{bookid} (bookid = ${row.id})}">Update</a> -
-                <a href="#" th:href="@{/books/delete/{bookid} (bookid = ${row.id})}">Delete</a>
+            <td th:text="${book.title}"></td>
+            <td th:text="${book.author}"></td>
+            <td><a href="#" th:href="@{/edit/{id} (id = ${book.id})}">Update</a> -
+                <a href="#" th:href="@{/delete/{id} (id = ${book.id})}">Delete</a>
             </td>
         </tr>
     </table>

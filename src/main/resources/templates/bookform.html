@@ -20,7 +20,7 @@
     </div>
     <br />
     <br />
-    <form action="#" th:action="@{/books/add}" th:object="${book}" method="post">
+    <form action="#" th:action="@{/add}" th:object="${book}" method="post">
         <div class="form-group">
             <label for="image">Image Url</label>
             <input type="text" class="form-control" id="image" placeholder="Image Url" th:field="*{image}">

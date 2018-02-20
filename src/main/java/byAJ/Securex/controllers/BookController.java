@@ -9,11 +9,17 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/books")
 public class BookController {
 
     @Autowired
-    private BookRepository bookRepository;
+    BookRepository bookRepository;
+
+
+    @RequestMapping("/books")
+    public String books(Model model){
+        return "index";
+    }
+
 
     @RequestMapping("/list")
     public String listBooks(Model model){
@@ -31,7 +37,7 @@ public class BookController {
             return "bookform";
         }
         bookRepository.save(book);
-        return "redirect:/books/list";
+        return "redirect:/list";
     }
     @RequestMapping("/edit/{id}")
     public String editBook(@PathVariable("id")int bookid, Model model){
