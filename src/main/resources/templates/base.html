@@ -35,6 +35,7 @@
                     <li sec:authorize="hasAuthority('USER')"><a th:href="@{/add}">Add Book</a></li>
                     <li><a th:href="@{/list}">Show Books</a></li>
                     <li sec:authorize="isAnonymous()"><a th:href="@{/login}">Login</a></li>
+                    <li sec:authorize="isAnonymous()"><a th:href="@{/register}">Register New User</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>

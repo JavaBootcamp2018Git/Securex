@@ -1,8 +1,10 @@
 package byAJ.Securex.DataLoader;
 
 
+import byAJ.Securex.models.Book;
 import byAJ.Securex.models.Role;
 import byAJ.Securex.models.User;
+import byAJ.Securex.repositories.BookRepository;
 import byAJ.Securex.repositories.RoleRepository;
 import byAJ.Securex.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +22,13 @@ public class DataLoader implements CommandLineRunner {
     @Autowired
     RoleRepository roleRepository;
 
+    @Autowired
+    BookRepository bookRepository;
+
     @Override
     public void run(String... strings) throws Exception {
         System.out.println("Loading data...");
+
 
         roleRepository.save(new Role("USER"));
         roleRepository.save(new Role("ADMIN"));
@@ -58,5 +64,9 @@ public class DataLoader implements CommandLineRunner {
         User user4 = new User("clark@kent.com", "password", "Clark", "Kent", true, "clark");
         user4.setRoles(Arrays.asList(userRole, adminRole));
         userRepository.save(user4);
+
+
+        Book book = new Book("Black Panthar","Ryan Copper","https://pmcvariety.files.wordpress.com/2017/07/black-panther.jpg?w=700&h=393&crop=1");
+        bookRepository.save(book);
     }
 }
